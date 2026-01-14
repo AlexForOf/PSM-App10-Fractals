@@ -7,6 +7,7 @@
 #include "mandelbrot.h"
 #include "fern.h"
 #include "julia.h"
+#include "newton.h"
 #include "fractal_renderer.h"
 
 static const int WINDOW_WIDTH = 1280;
@@ -16,7 +17,8 @@ enum FractalType
 {
   MANDELBROT,
   FERN,
-  JULIA
+  JULIA,
+  NEWTON
 };
 
 struct AppState
@@ -38,6 +40,7 @@ struct AppState
   Mandelbrot mandelbrotFractal;
   Fern fernFractal;
   Julia juliaFractal;
+  Newton newtonFractal;
   Fractal *selectedFractal = &mandelbrotFractal;
   FractalType selectedFractalType = FractalType::MANDELBROT;
 
@@ -68,6 +71,9 @@ struct AppState
       break;
     case FractalType::JULIA:
       selectedFractal = &juliaFractal;
+      break;
+    case FractalType::NEWTON:
+      selectedFractal = &newtonFractal;
       break;
     }
   }
@@ -143,6 +149,21 @@ void handleInput(const sf::Event &event, sf::RenderWindow &window, AppState &sta
       state.needsRedraw = true;
 
       window.setTitle("Fractals - Julia. Hold Left Mouse and move around");
+    }
+
+    if (keyEvent->code == sf::Keyboard::Key::Num4)
+    {
+      state.offset_x = 0.0;
+      state.initial_offset_x = state.offset_x;
+      state.offset_y = 0.0;
+      state.initial_offset_y = state.offset_y;
+      state.zoom = 0.8;
+      state.initial_zoom = state.zoom;
+
+      state.setSelectedFractal(FractalType::NEWTON);
+      state.needsRedraw = true;
+
+      window.setTitle("Fractals - Newton");
     }
   }
 

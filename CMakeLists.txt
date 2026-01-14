@@ -27,6 +27,7 @@ target_include_directories(Fractals PRIVATE
     ${CMAKE_SOURCE_DIR}/src/render
     ${CMAKE_SOURCE_DIR}/src/fractals
     ${CMAKE_SOURCE_DIR}/src/fractals/fern
+    ${CMAKE_SOURCE_DIR}/src/fractals/newton
     ${CMAKE_SOURCE_DIR}/src/fractals/escape_time
     ${CMAKE_SOURCE_DIR}/src/fractals/escape_time/mandelbrot
     ${CMAKE_SOURCE_DIR}/src/fractals/escape_time/julia
